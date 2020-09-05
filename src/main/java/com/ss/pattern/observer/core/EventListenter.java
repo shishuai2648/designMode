@@ -9,6 +9,9 @@ public class EventListenter {
 
     protected Map<Enum,Event> events = new HashMap<>();
 
+
+
+
     public void addListenter(Enum eventType, Object target, Method callback){
         // 注册事件
         // 用反射调用方法
@@ -19,9 +22,8 @@ public class EventListenter {
         if( !this.events.containsKey(call) ){
             return;
         }
-        trigger(this.events.get(call).setTrigger(call.toString()));
-    }
-    private void trigger(Event e){
+        Event e = this.events.get(call).setTrigger(call.toString());
+
         e.setSource(this);
         e.setTime(System.currentTimeMillis());
 
@@ -31,4 +33,5 @@ public class EventListenter {
             e1.printStackTrace();
         }
     }
+
 }
